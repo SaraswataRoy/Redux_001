@@ -1,20 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import store from './configStore';
+import { addTask, removeTask, completeTask, fetchTodo } from './store/task';
+
+store.subscribe( ()=> {
+  console.log("Updated", store.getState())
+})
+
+store.dispatch(addTask({task: "Task 1"}))
+store.dispatch(addTask({task: "Task 2"}))
+console.log(store.getState())
+
+store.dispatch(completeTask({id: 2}))
+console.log(store.getState())
+
+store.dispatch(removeTask({id: 1}))
+store.dispatch(fetchTodo())
+console.log(store.getState())
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a>
           Learn React
         </a>
       </header>

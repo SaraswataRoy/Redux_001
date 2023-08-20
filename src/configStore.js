@@ -1,9 +1,6 @@
 import reducer from './store/task';
-import { configureStore } from '@reduxjs/toolkit';
-import log from './middleware/log';
-import logger from 'redux-logger';
-import error from './middleware/error';
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
+import thunk from 'redux-thunk';
 
-const store = configureStore({reducer, middleware: (getdefaultMiddleware) => [...getdefaultMiddleware(), logger, error]})
-
+const store = configureStore({reducer}, applyMiddleware(thunk))
  export default store 
